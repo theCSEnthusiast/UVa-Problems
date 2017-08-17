@@ -1,0 +1,60 @@
+/*
+UVa-10114:Loansome Car Buyer
+Author: Abhijeet Bhattacharya
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    //Declaration
+	int months,records,n;
+	float down,loan,rate;
+	
+	
+	while(cin>>months>>down>>loan>>records,months>0){
+	    map <int,float> record_map;
+	    while(records--){
+	        cin>>n>>rate;
+	        record_map.insert(pair<int,float>(n,rate));
+	    }
+	    float worth=loan+down;
+	    float month_pay=loan/months;
+	    for(int i=0;i<=months;i++){
+	        if(i==0){
+	            worth-=worth*record_map.at(i);
+	        }
+	        else
+	        {
+	            loan-=month_pay;
+	            if(record_map.find(i)!=record_map.end())
+	            {
+	            worth-=worth*record_map.at(i);    
+	            }
+	            else
+	            {
+	                auto it=record_map.lower_bound(i);
+	                it--;
+	                worth-=worth*(it->second);
+	            }
+	        }
+	        //printf("Check=%f %f\n",loan,worth);
+	        if(loan<worth)
+	        {
+	            if(i==1)
+	            {
+	            printf("%d month\n",i);
+	            break;
+	            }
+	            else
+	            {
+	            printf("%d months\n",i);    
+	            break;
+	            }
+	            
+	        }
+	    }
+	    
+	    
+	}
+	return 0;
+}
