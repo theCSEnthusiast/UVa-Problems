@@ -1,0 +1,41 @@
+/*
+UVa-11559: Event Planning
+Author:Abhijeet Bhattacharya
+*/
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n,b,h,w,cost,vacancy;
+	while(cin>>n>>b>>h>>w){
+	    int trip_planned=0;
+	    int best_answer=500000;
+	    while(h--){
+	        cin>>cost;
+	        
+	        int price=cost*n;
+	        for(int i=0;i<w;i++){
+	            cin>>vacancy;
+	            
+	            
+	            if(vacancy>=n&&price<=b){
+	                if(price<best_answer)
+	                {
+	                    best_answer=price;
+	                    trip_planned=1;
+	                }
+	                
+	            }
+	            
+	        }
+	    }
+	    if(!trip_planned){
+	        printf("stay home\n");
+	    }
+	    else
+	    {
+	        printf("%d\n",best_answer);
+	    }
+	}
+	return 0;
+}
