@@ -1,0 +1,23 @@
+/*
+UVa-11799: Horror Dash
+Author: Abhijeet Bhattacharya
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	for(int test=0;test<t;test++){
+	    int speed[10000];
+	    int count;
+	    cin>>count;
+	    for(int i=0;i<count;i++){
+	        cin>>speed[i];
+	    }
+	    sort(speed,speed+count);
+	    printf("Case %d: %d\n",test+1,speed[count-1]);
+	    
+	}
+	return 0;
+}
