@@ -1,1 +1,2 @@
-Solutions 
+Problems are taken from UVa Online Judge.
+Root :: Competitive Programming 3: The New Lower Bound of Programming Contests (Steven & Felix Halim) :: Introduction :: Getting Started: The Easy Problems :: Easy
