@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	float h,u,d,f;
+	
+	while(cin>>h>>u>>d>>f,h>0){
+	    float distance=0;
+	    int success=0;
+	    float decrement=(u*f)/100;
+	    for(int day=1;!success;day++){
+	        
+	        if(u>0){
+	            distance+=u;
+	        }
+	        u-=decrement;
+	        
+	        
+	        if(distance>h){
+	            printf("success on day %d\n",day);
+	            success=1;
+	        }
+	        if(!success){
+	        distance-=d;
+	         if(distance<0){
+	            printf("failure on day %d\n",day);
+	            break;
+	        }
+	        }
+	    }
+	}
+	return 0;
+}
