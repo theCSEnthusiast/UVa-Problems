@@ -1,3 +1,8 @@
+/*
+UVa 573: The Snail
+Author: Abhijeet Bhattacharya
+
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -9,14 +14,14 @@ int main() {
 	    int success=0;
 	    float decrement=(u*f)/100;
 	    for(int day=1;!success;day++){
-	        
-	        if(u>0){
+	         
+	        if(u>0){                      //Corner Test Case
 	            distance+=u;
 	        }
 	        u-=decrement;
 	        
 	        
-	        if(distance>h){
+	        if(distance>h){               //If distance>h then only snail can escape
 	            printf("success on day %d\n",day);
 	            success=1;
 	        }
