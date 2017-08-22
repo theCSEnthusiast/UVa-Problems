@@ -1,0 +1,39 @@
+/*
+UVa 11506: Bender B. Rodríguez Problem
+Author: Abhijeet Bhattacharya
+*/
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool change(char curr,char sign,char move){                            //Function to find out when sign changes
+    if(curr=='x'&&sign=='-') return true;
+    if(curr=='y'&&sign=='+'&&move=='y') return true;
+    if(curr=='z'&&sign=='+'&&move=='z') return true;
+    return false;
+}
+int main() {
+	int L;
+	char s[3];
+	
+	while(cin>>L,L){
+	if(L==0) break;
+	L--;
+	int sign=1;
+	char c='x';
+	while(L--){
+	    scanf("%s",s);
+	    if(s[0]=='N') continue;
+	    if(change(c,s[0],s[1])) sign=-sign;
+	    
+	    if(c=='x') c=s[1];
+	    else if(c=='y'&&s[1]=='y') c='x';
+	    else if(c=='z'&&s[1]=='z') c='x';
+	}                                                     //End of bending process
+	    char signs=sign==1?'+':'-';
+	    printf("%c%c\n",signs,c);
+	}                                                     //End of Test Cases
+	
+	return 0;
+}
