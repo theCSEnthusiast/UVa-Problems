@@ -1,0 +1,2 @@
+Problems taken from;
+Root :: Competitive Programming 3: The New Lower Bound of Programming Contests (Steven & Felix Halim) :: Introduction :: Ad Hoc Problems :: Game (Card)
