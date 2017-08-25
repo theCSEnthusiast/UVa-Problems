@@ -1,0 +1,91 @@
+/*
+UVa 555: Bridge Hands
+Author: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+//Global declaration of suit and deck
+map<char,int> suit;
+map<char,int> deck;
+bool sort_function(string i, string j){
+    if(suit[i[0]] == suit[j[0]]){
+		return (deck[i[1]] < deck[j[1]]);
+	}
+	else{
+		return (suit[i[0]] < suit[j[0]]);
+	}
+}
+
+int main() {
+    
+	suit['C'] = 0;
+	suit['D'] = 1;
+	suit['S'] = 2;
+	suit['H'] = 3;
+	
+	deck['2'] = 2;
+	deck['3'] = 3;
+	deck['4'] = 4;
+	deck['5'] = 5;
+	deck['6'] = 6;
+	deck['7'] = 7;
+	deck['8'] = 8;
+	deck['9'] = 9;
+	deck['T'] = 10;
+	deck['J'] = 11;
+	deck['Q'] = 12;
+	deck['K'] = 13;
+	deck['A'] = 14;
+
+//To store mapping of direction and index
+map<char,int> dir;
+map<int,char> rdir;
+    dir['S'] = 0;
+	dir['W'] = 1;
+	dir['N'] = 2;
+	dir['E'] = 3;
+	rdir[0] = 'S';
+	rdir[1] = 'W';
+	rdir[2] = 'N';
+	rdir[3] = 'E';
+
+//Declarations
+char N;
+
+while(cin>>N,N!='#'){
+    int current = (dir[N]+1)%4;
+    string cards,rest,sample;
+    vector<string> players[4];
+    cin>>cards;
+    cin>>rest;
+    cards+=rest;
+    
+    for(int i=0;i<13;i++){
+				for(int j=0;j<4;j++){
+					/*
+					Trick to get 2 characters from the string.
+					Multiplied by 2 because each card corresponds to two characters
+					*/
+					sample= cards.substr((i*4 +j)*2,2); 
+					
+					players[current].push_back(sample);
+					current = (current + 1)%4;
+				}
+			}
+			
+			for(int i=0;i<4;i++){
+				sort(players[i].begin(),players[i].end(),sort_function);
+				printf("%c:",rdir[i]);
+				for(auto it=players[i].begin();it!=players[i].end(); it++){
+					cout<<" "<<(*it);
+				}
+				printf("\n");
+				
+			}
+			
+    
+}
+	return 0;
+}
