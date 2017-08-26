@@ -1,0 +1,64 @@
+/*
+UVa 12247: Jollo
+Author: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int arr[5];
+	while(cin>>arr[0]>>arr[1]>>arr[2]>>arr[3]>>arr[4],arr[0]){
+	    int use[53]={};
+	    int found=0;
+	    
+	    for(int i=0;i<5;i++){
+	        use[arr[i]]=1;
+	    }
+	    int A=arr[0],B=arr[1],C=arr[2];
+	    
+	    for(int j=1;j<=52;j++){
+	    if(use[j]) continue;
+	    
+	    int prince[3] = {arr[3],arr[4], j}, w = 0;
+            if(prince[0] > A)  w++;
+            if(prince[1] > B)  w++;
+            if(prince[2] > C)  w++;
+            if(w < 2) continue;
+            w = 0;
+            if(prince[0] > A)  w++;
+            if(prince[2] > B)  w++;
+            if(prince[1] > C)  w++;
+            if(w < 2) continue;
+            w = 0;
+            if(prince[1] > A)  w++;
+            if(prince[0] > B)  w++;
+            if(prince[2] > C)  w++;
+            if(w < 2) continue;
+            w = 0;
+            if(prince[1] > A)  w++;
+            if(prince[2] > B)  w++;
+            if(prince[0] > C)  w++;
+            if(w < 2) continue;
+            w = 0;
+            if(prince[2] > A)  w++;
+            if(prince[0] > B)  w++;
+            if(prince[1] > C)  w++;
+            if(w < 2) continue;
+            w = 0;
+            if(prince[2] > A)  w++;
+            if(prince[1] > B)  w++;
+            if(prince[0] > C)  w++;
+            if(w < 2) continue;
+	    
+	        found = 1;
+            printf("%d\n", j);
+            break;
+	    
+	    
+	    
+	    }
+	    if(!found)  printf("-1\n");
+	}
+	return 0;
+}
