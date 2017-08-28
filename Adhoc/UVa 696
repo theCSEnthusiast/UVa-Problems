@@ -6,7 +6,7 @@ UVa 696: How many knights?
 using namespace std;
 
 int solve(int n, int m){
-    if(n > m) swap(n,m);  //Row less than col
+    if(n > m) swap(n,m);  //handles all the symmetric cases
     if(n == 1) return m;  //Returns column
     /*
     Making blocks of 4 knights and for additional knights
