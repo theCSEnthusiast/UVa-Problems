@@ -1,0 +1,47 @@
+/*
+UVa 278: Chess
+Author: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int isOdd (int n)
+{
+  if (n & 1)
+    return 1;
+  else
+    return 0;
+}
+int main() {
+	int test,row,col;
+	float ans;
+	char piece;
+	cin>>test;
+	
+	while(test--){
+	    cin>>piece;
+	    cin>>row>>col;
+	    if(piece=='r'||piece=='Q'){
+	        cout<<row<<endl;	    
+	    }
+	    else if(piece=='k'){
+	            ans=(row*col)/2.0;
+	            cout<<ceil(ans)<<endl;
+	        
+	    }
+	    else if(piece=='K'){
+	        if(isOdd(col)){
+	            col++;
+	        }
+	        if(isOdd(row)){
+	            row++;
+	        }
+	        ans=(row*col)/4;
+	        cout<<ans<<endl;
+	    }
+	    
+	    
+	}
+	return 0;
+}
