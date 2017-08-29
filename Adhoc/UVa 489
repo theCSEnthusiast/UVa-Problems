@@ -1,0 +1,56 @@
+/*
+UVa 489: Hangman Judge
+Author: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n;
+	while(cin>>n,n!=-1){
+	    string word,guess;
+	    set <char> myset;
+	    cin>>word;
+	    cin>>guess;
+	    
+	    //Stores unique characters in set
+	    for(int i=0;i<word.length();i++){
+	        if(myset.find(word[i])==myset.end()){
+	            myset.insert(word[i]);
+	        }
+	    }
+	    
+	    int strokes=0,found=0;
+	    for(int i=0;i<guess.length();i++){
+	        
+	        if(myset.find(guess[i])!=myset.end()){
+	            myset.erase(myset.find(guess[i]));
+	        }
+	        else {
+	            ++strokes;
+	        }
+	        
+	    if(myset.size()==0){
+	            printf("Round %d\nYou win.\n",n);
+	            found=1;
+	            break;
+	        }
+	        else if(strokes==7){
+	            printf("Round %d\nYou lose.\n",n);
+	            found=1;
+	            break;
+	          }    
+	        
+	        
+	       // printf("iteration %d =>strokes %d\n",i,strokes);
+	    }
+	    
+	    if (strokes<7&&myset.size()!=0&&!found) {
+	        printf("Round %d\nYou chickened out.\n",n);
+	    }
+	    
+	    
+	} //End of while
+	return 0;
+}
