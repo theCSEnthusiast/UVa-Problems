@@ -1,0 +1,109 @@
+/*
+UVa 401:Palindromes
+Author: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+map<char,char> rev;
+bool isPalindrome(char a,char b){
+    return a==b;
+}
+bool isMirror(char a,char b){
+    if(rev.find(a)!=rev.end()){
+        a=rev.find(a)->second;
+        if(a==b) return true;
+        else return false;
+    }
+    
+    return false;
+}
+int main() {
+
+	string str;
+	
+	
+	// Creates Map for storing revs
+	rev.insert(pair<char,char>('A','A'));
+	rev.insert(pair<char,char>('E','3'));
+	rev.insert(pair<char,char>('H','H'));
+	rev.insert(pair<char,char>('I','I'));
+	rev.insert(pair<char,char>('J','L'));
+	rev.insert(pair<char,char>('L','J'));
+	rev.insert(pair<char,char>('M','M'));
+	rev.insert(pair<char,char>('O','O'));
+	rev.insert(pair<char,char>('S','2'));
+	rev.insert(pair<char,char>('T','T'));
+	rev.insert(pair<char,char>('U','U'));
+	rev.insert(pair<char,char>('V','V'));
+	rev.insert(pair<char,char>('W','W'));
+	rev.insert(pair<char,char>('X','X'));
+	rev.insert(pair<char,char>('Y','Y'));
+	rev.insert(pair<char,char>('Z','5'));
+	rev.insert(pair<char,char>('1','1'));
+	rev.insert(pair<char,char>('2','S'));
+	rev.insert(pair<char,char>('3','E'));
+	rev.insert(pair<char,char>('5','Z'));
+	rev.insert(pair<char,char>('8','8'));
+	
+	while(cin>>str){
+	    int palindrome=1,mirror=1;
+	    int length=str.size();
+	    if(length==1){
+	        if(rev.find(str[0])->second==str[0]){
+	         cout<<str<<" -- is a mirrored palindrome.\n"<<endl;
+	        }
+	        else{
+	             cout<<str<<" -- is a regular palindrome.\n"<<endl;
+	        }
+	        
+	         continue;
+	    }
+	    
+	    //Processing
+	    for(int i=0;i<length/2;i++){
+	   if(!isPalindrome(str[i],str[length-1-i])){
+	       palindrome=0;
+	       
+	   }
+	    if(!isMirror(str[i],str[length-1-i])){
+	            mirror=0;
+	    }
+	    }
+	   
+     //To Handle the case when length is odd and checks the middle element
+	   if(length%2!=0){
+	      // printf("%c",str[(length/2)]);
+	       if(rev.find(str[(length/2)])!=rev.end()){
+	       if(rev.find(str[(length/2)])->second!=str[(length/2)]){
+	         mirror=0;
+	        }
+	       }
+	       else {
+	           mirror=0;
+	       }
+	       
+	   }
+	  
+	   //Output
+	  if(mirror){
+	      if(palindrome){
+	           cout<<str<<" -- is a mirrored palindrome.\n"<<endl;
+	      }
+	      else{
+	         cout<<str<<" -- is a mirrored string.\n"<<endl;
+	      }
+	  }
+	  else{
+	      if(palindrome){
+	          cout<<str<<" -- is a regular palindrome.\n"<<endl;
+	      }
+	      else{
+	          
+	          cout<<str<<" -- is not a palindrome.\n"<<endl;
+	      }
+	  }
+	   
+	} //End of Test Cases
+	return 0;
+}
