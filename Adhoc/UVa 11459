@@ -1,0 +1,53 @@
+/*
+UVa 11459: Snakes and Ladders
+Author: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int test;
+	cin>>test;
+	while(test--){
+	    
+	    
+	     int a,b,c,src,dest,move,temp;
+	   
+	    cin>>a>>b>>c;
+	    vector<int> arr(a, 1),mapping(101, 0);
+	    
+	    //Insert Mappings
+	    while(b--){
+	        cin>>src>>dest;
+	       mapping[src] = dest;
+	    }
+	   
+	    int won=0;
+	    for(int i=0;i<c;i++){
+	        if(!won){
+	        int final=arr[i%a];    
+	        cin>>move;
+	        final+=move;
+	       
+	        if(mapping[final] != 0){
+	            final=mapping[final];
+	        }
+	        
+	         arr[i%a]=final;
+	        if(final>=100) won=1;
+	        }
+	        else
+	        {
+	            scanf("%d",&temp);      //Garbage value not considered for processing
+	        }
+	    }
+	    
+	    for(int i=0;i<a;i++){
+	       printf("Position of player %d is %d.\n",i+1,arr[i]); 
+	    }
+	   
+	   
+	}//End of test case
+	return 0;
+}
