@@ -1,6 +1,7 @@
 /*
 UVa 195: Anagram
 Author: Abhijeet Bhattacharya
+Tip: Compare function is awesome!
 */
 //Required sorting order should be 'A -> a -> B -> b -> C -> c ..... -> Y -> y -> Z -> z' 
 //and not A,B...Z,a,b,...z
