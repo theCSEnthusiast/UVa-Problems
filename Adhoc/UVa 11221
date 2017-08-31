@@ -1,0 +1,62 @@
+/*
+UVa 11221: Magic square palindromes.
+Author: Abhijeet Bhattacharya
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isPalindrome(char a,char b){
+    return a==b;
+}
+int main() {
+	int test,length,count=1;
+	string str;
+	cin>>test;
+	cin.ignore();
+	while(test--){
+	    int magic=1;
+	    vector<char> s;
+	    getline(cin,str);
+	    //cout<<str;
+	    length=str.size();
+	    
+	    //Cleaning string
+	    for(int i=0;i<length;i++){
+	        if(str[i]!=','&&str[i]!='.'&&str[i]!='?'&&str[i]!='!'&&str[i]!=' '&&str[i]!=')'&&str[i]!='('){
+	            s.push_back(tolower(str[i]));
+	        }
+	    }
+	    
+	    //Redefining length
+	    length=s.size();
+	    int root=sqrt(length);
+	    
+      //To handle corner cases
+	    if(length==1||length==0){
+	        printf("Case #%d:\n",count++);
+            printf("%d\n",length);
+            continue;
+	    }
+	    if(length/root!=root){
+	        magic=0;
+	    }
+	    else{
+	        for(int i=0;i<length/2&&magic;i++){
+	     if(!isPalindrome(s[i],s[length-1-i])){
+	         magic=0;
+	         //break;
+	     }
+	    }
+	        
+	    }
+	    printf("Case #%d:\n",count++);
+	    if(magic){
+	    printf("%d\n",root);
+	    }
+	    else{
+	    printf("No magic :(\n");    
+	    }
+	    
+	}//End of test case
+	return 0;
+}
