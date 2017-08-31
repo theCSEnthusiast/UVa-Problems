@@ -1,0 +1,46 @@
+/*
+UVa 10945: Mother Bear
+Author: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isPalindrome(char a,char b){
+    return a==b;
+}
+
+int main() {
+	string str;
+	while(getline(cin,str),str!="DONE"){
+	    vector<char> s;
+	    int length=str.size();
+	    int survive=1;
+	    
+	    
+	    //Stores only lowercase letters
+	    for(int i=0;i<length;i++){
+	        if(str[i]!=','&&str[i]!='.'&&str[i]!='?'&&str[i]!='!'&&str[i]!=' '){
+	            s.push_back(tolower(str[i]));
+	        }
+	    }
+	    //cout<<str;
+	    //Length redefined
+	    length=s.size();
+	    //Processing
+	    for(int i=0;i<length/2;i++){
+	     if(!isPalindrome(s[i],s[length-1-i])){
+	         survive=0;
+	     }
+	    }
+	    
+	    if(survive){
+	        cout<<"You won\'t be eaten!"<<endl;
+	    }
+	    else{
+	        printf("Uh oh..\n");
+	    }
+	    
+	}
+	return 0;
+}
