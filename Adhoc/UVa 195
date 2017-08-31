@@ -1,0 +1,50 @@
+/*
+UVa 195: Anagram
+Author: Abhijeet Bhattacharya
+*/
+//Required sorting order should be 'A -> a -> B -> b -> C -> c ..... -> Y -> y -> Z -> z' 
+//and not A,B...Z,a,b,...z
+
+#include <bits/stdc++.h>
+using namespace std;
+//Custom compare function
+bool compare (char a, char b)
+{
+    bool lowerA = true, lowerB = true;
+    if (a >= 'A' && a <= 'Z') 
+        lowerA = false;
+    if (b >= 'A' && b <= 'Z') 
+        lowerB = false;
+ 
+    //Both are upper or lower case
+    if (lowerA && lowerB) 
+        return a < b;
+    if (!lowerA && !lowerB) 
+        return a < b;
+    
+    //a it's a lowercase
+    if (lowerA)
+    {
+        a -= ('a'-'A');
+        return a < b;
+    }
+    else
+    {
+        b -= ('a'-'A');
+        return a <= b;
+    }
+}
+
+int main(){
+    int cases;
+    cin>>cases;
+    while(cases--){
+        string s;
+        cin>>s;
+        sort(s.begin(),s.end(),compare);
+        do{
+            cout<<s<<endl;
+        }while(next_permutation(s.begin(),s.end(),compare));
+    }
+ return 0;   
+}
