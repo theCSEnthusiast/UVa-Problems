@@ -1,0 +1,38 @@
+/*
+UVa 10038: Jolly Jumpers
+Author: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int marked[3002];
+	int a,b,n,diff,count;
+	while(cin>>n){
+	    count=n;
+	    bool jolly=true;
+	    fill_n(marked,n,0);     //Resets the marked array
+	    cin>>a;
+	    n--;
+	    while(n--){
+	        cin>>b;
+	        diff=abs(a-b);
+	        a=b;
+	        marked[diff]=1;
+	    }
+	    
+	    for(int i=1;i<count;i++){
+	        if(marked[i]==0){
+	            jolly=false;
+	            printf("Not jolly\n");
+	            break;
+	        }
+	    }
+	    if(jolly){
+	        printf("Jolly\n");
+	    }
+	    
+	}
+	return 0;
+}
