@@ -1,0 +1,29 @@
+/*
+UVa 10107 - What is the Median?
+Solution by: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	long int n,a,b;;
+	int length;
+	vector<long int> ans;
+	while(cin>>n){
+	    ans.push_back(n);
+	    length=ans.size();
+	    
+	    sort(ans.begin(),ans.end());            //sort the elements for every input
+	    if(length&1){                           //if odd
+	        printf("%ld\n",ans[length/2]);
+	    }
+	    else{                                   //if even
+	    a=ans[(length/2)-1];
+	    b=ans[length/2]+a;
+	        printf("%ld\n",b>>1);
+	    }
+	    
+	} //End of while
+	return 0;
+}
