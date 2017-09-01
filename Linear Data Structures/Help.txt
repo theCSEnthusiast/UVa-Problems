@@ -1,0 +1,2 @@
+Problems are taken from the below mentioned category:
+Root :: Competitive Programming 3: The New Lower Bound of Programming Contests (Steven & Felix Halim) :: Data Structures and Libraries :: Linear Data Structures with Built-in Libraries 
