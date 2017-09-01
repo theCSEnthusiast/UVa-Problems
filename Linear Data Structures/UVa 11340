@@ -1,0 +1,45 @@
+/*
+UVa 11340: Newspaper
+Author: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int test,k,line,cost;
+	char c;
+	string str;
+	unordered_map<char,int> rate;
+	cin>>test;
+	while(test--){
+	    rate.clear();
+	    double price=0;
+	    cin>>k;
+	    
+	    //Insert char value price in unordered_map
+	    while(k--){
+	       cin>>c>>cost; 
+	        rate.insert(pair<char,int>(c,cost));
+	    }
+	    
+	    cin>>line;
+	    cin.ignore();
+	    while(line--){
+	        getline(cin,str);
+	        
+	        for(int i=0;i<str.size();i++){
+	            //if(str[i]==' ') continue;
+	            if(rate.find(str[i])!=rate.end()) {
+	                //printf("%c\n",str[i]); 
+	                price+=rate.at(str[i]);
+	            }
+	        }
+	        
+	    }
+	    
+	    price/=100;
+	    printf("%.2lf$\n",price);
+	}
+	return 0;
+}
