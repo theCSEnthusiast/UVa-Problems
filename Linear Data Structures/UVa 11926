@@ -1,0 +1,58 @@
+/*
+UVa 11926 - Multitasking
+Solution by: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n,m,start,end,interval;
+	bitset<1000001> calender;
+	while(cin>>n>>m){
+	    if(n==0&&m==0) break;
+	    calender.reset();
+	    int conflict=0;
+	   
+	    while(n--){
+	        cin>>start>>end;
+	        for(int i=start;i<end&&!conflict;i++){
+	            if(calender.test(i)) {
+	                conflict=1;
+	                break;
+	            }
+	            else{
+	                calender.set(i);
+	            }
+	        }
+	    } //End of one time tasks
+	    
+	    while(m--){
+	        cin>>start>>end>>interval;
+	        //cout<<"start"<<start<<end<<interval;
+	        while(start<1000001&&!conflict){
+	        for(int i=start;i<min(end,1000001);i++){
+	            if(calender.test(i)) {
+	                conflict=1;
+	                break;
+	            }
+	            else{
+	                calender.set(i);
+	            }
+	        }
+	        start+=interval;
+	        end+=interval;
+	        
+	        }
+	    } //End of multi-time tasks
+	    
+	    if(conflict){
+	        printf("CONFLICT\n");
+	    }
+	    else{
+	        printf("NO CONFLICT\n");
+	    }
+	    
+	} //End of test cases
+	return 0;
+}
