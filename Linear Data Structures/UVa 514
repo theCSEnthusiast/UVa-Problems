@@ -1,0 +1,59 @@
+/*
+UVa 514: Rails
+Solution by: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N,temp,ans;
+	vector<int> output;
+	stack<int> station;
+	while(cin>>N,N){
+	    
+	    while(cin>>temp,temp){
+	        output.clear();
+	        //Clearing stack
+	       while(!station.empty()){
+	           station.pop();
+	       }
+	        output.push_back(temp);
+	        for(int i=1;i<N;i++){
+	            cin>>temp;
+	       output.push_back(temp);
+	        }
+	  
+	   int i=1,j=0;
+	   ans=1;
+	   while(j<N){  //Processing/simulation block
+	      
+	       
+	       if(i==output[j]){
+	           i++,j++;
+	           continue;
+	       }
+	       while(i<=output[j]&&i<=N){
+	           station.push(i);
+	           i++;
+	       }
+	   
+	       while(!station.empty()&&station.top()==output[j]){
+	           station.pop();
+	           j++;
+	       }
+	       if(!station.empty()&&station.top()!=output[j]&&output[j]<i){
+	           ans=0;
+	           break;
+	       }
+	        
+	      
+	   }
+	   if(ans) printf("Yes\n");
+	   else printf("No\n");
+	        
+	    } //End of each ouput seq block
+	   printf("\n");
+	}//End of test cases
+	return 0;
+}
