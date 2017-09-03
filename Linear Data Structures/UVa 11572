@@ -1,0 +1,28 @@
+/*
+UVa 11572: Unique Snowflake
+Note: Awesome Logic to keep track of last occurence of snowflakes.
+*/
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int test,N;
+	cin>>test;
+	int snowflakes[1000001];
+	while(test--){
+	    cin>>N;
+	    int begin=1,ans=0;
+	    map<int,int> last_appearance;
+	    for(int i=1;i<=N;i++){ //processing for snowflakes
+	        scanf("%d",&snowflakes[i]);
+	        if(last_appearance[snowflakes[i]]>=begin){  //Duplicate found
+	            begin=last_appearance[snowflakes[i]]+1;
+	        }
+	        last_appearance[snowflakes[i]]=i;
+	        ans=(i-begin+1)>ans?(i-begin+1):ans;
+	    }
+	    printf("%d\n",ans);
+	    
+	}
+	return 0;
+}
