@@ -1,0 +1,44 @@
+/*
+UVa 10226: Hardwood Species
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+  int test,freq;
+  int size;
+  string tree;
+	map <string,int> forest;
+	cin>>test;
+	cin.ignore();
+	cin.ignore();
+	while(test--){
+	    
+	    forest.clear();
+	    size=0;
+	   
+	    while(getline(cin,tree)&&tree.size()!=0){
+	        ++size;
+	        if(forest.find(tree)==forest.end()){
+	            forest.insert(pair<string,int>(tree,1));
+	        }
+	        else{
+	            freq=forest.at(tree);
+	            forest.at(tree)=++freq;
+	        }
+	    }
+	    
+	    for(auto it=forest.begin();it!=forest.end();it++){
+	        cout<<it->first;
+	        printf(" %.4f\n",((it->second)*100/(float)size));
+	    }
+	   
+	   if(test) printf("\n");
+	    
+   
+	} //End of test cases
+	
+	return 0;
+}
