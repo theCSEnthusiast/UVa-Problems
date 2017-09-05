@@ -1,0 +1,47 @@
+/*
+1203 - Argus
+Solution By: Abhijeet Bhattachyarya
+Note: Priority queue stores elements in increasing order.
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+struct compare  
+ {  
+   bool operator()(const int& l, const int& r)  
+   {  
+       return l > r;  
+   }  
+ };
+int main() {
+	string word;
+	int id,period,k,count=0,min_time=3000;
+	map<int,int> argus;
+	priority_queue<int, vector<int>,compare> q;
+	while(cin>>word,word.compare("#")!=0){
+	    cin>>id>>period;
+	    if(period<min_time) min_time=period;
+	    argus.insert(pair<int,int>(id,period));
+	    
+	}
+	cin>>k;
+
+	//Processing
+	for(int timer=min_time;count<k;timer++){
+	    for(auto it=argus.begin();it!=argus.end()&&count<k;it++){
+	        int second=it->second;
+	        
+	        if(timer%second==0) {
+	        q.push(it->first);      
+	        }
+	        
+	    }
+	    while(!q.empty()&&count<k){
+	        printf("%d\n",q.top());
+	        q.pop();
+	        count++;
+	    }
+	    
+	}
+	return 0;
+}
