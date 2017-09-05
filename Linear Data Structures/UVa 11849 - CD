@@ -1,0 +1,31 @@
+/*
+UVa 11849 :CD
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int M,N,temp;
+	set <int> cd;
+	while(cin>>N>>M){
+	    cd.clear();
+	    int count=0;
+	    if(M==0&&N==0) break;
+	    else{
+	        while(N--){
+	            cin>>temp;
+	            cd.insert(temp);
+	        }
+	        while(M--){
+	            cin>>temp;         
+	            if(cd.find(temp)!=cd.end()) count++;
+	        }
+	        
+	    //Printing answer
+	   printf("%d\n",count);
+	    }
+	} //End of test cases
+	return 0;
+}
