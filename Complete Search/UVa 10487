@@ -1,0 +1,36 @@
+/*
+UVa 10487: Closest Sum
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int arr[1001],m,query,min;
+	int N,count=1,ans;
+	
+	while(cin>>N,N!=0){
+	    for(int i=0;i<N;i++) scanf("%d",&arr[i]);
+	    cin>>m;
+	    printf("Case %d:\n",count++);
+	    while(m--){
+	        cin>>query;
+	        min=INFINITY;
+	        for(int i=0;i<N-1;i++){
+	            for(int j=i+1;j<N;j++){
+	                int diff=abs(arr[i]+arr[j]-query);
+	                if(min>diff){
+	                    min=diff;
+	                    ans=arr[i]+arr[j];
+	                }
+	            }
+	        }
+	      printf("Closest sum to %d is %d.\n",query,ans);
+	        
+	    }
+	    
+	    
+	}
+	return 0;
+}
