@@ -1,0 +1,50 @@
+/*
+UVa 11242 - Tour de France
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int f,r,temp;
+	double drive,first,second;
+	vector<int> front;
+	vector<int> rear;
+	multiset<double> ratios;
+	while(cin>>f>>r,f!=0){
+	    
+	    front.clear();
+	    rear.clear();
+	    ratios.clear();
+	 
+	    double answer=0;
+	    for(int i=0;i<f;i++){
+	        cin>>temp;
+	        front.push_back(temp);
+	    }
+	    for(int i=0;i<r;i++){
+	        cin>>temp;
+	        rear.push_back(temp);
+	    }
+	    
+	    //Processing
+	    for(int i=0;i<rear.size();i++){
+	        for(int j=0;j<front.size();j++){
+	            drive=(double)rear[i]/(double)front[j];
+	            ratios.insert(drive);
+	        }
+	    }
+	  
+	    for(auto it=ratios.begin();it!=ratios.end();){
+	        if(++it!=ratios.end()){
+	            --it;
+	        first=*it;
+	        second=*(++it);
+	        if(second/first>answer) answer=second/first; //cout<<"answer"<<answer<<endl;
+	        }
+	    }
+	    printf("%.2lf\n",answer); 
+	}
+	return 0;
+}
