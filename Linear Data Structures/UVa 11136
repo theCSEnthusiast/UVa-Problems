@@ -1,0 +1,36 @@
+/*
+UVa 11136: Hoax or What
+Solution By: Abhijeet Bhattacharya
+Note: Since sum can be a large number,int won't do=> Long int is necessary!
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int N,k,temp;
+	multiset<int> bills;
+	
+	while(cin>>N,N!=0){
+	 bills.clear();
+	 long int cost=0;
+	 while(N--){
+	     cin>>k;
+	     while(k--){
+	         cin>>temp;
+	         bills.insert(temp);
+	     }
+	 auto end=bills.end(); end--;
+	 auto start=bills.begin();
+	  
+	  //Compute cost
+	  cost+=*end-*start;
+	  
+	  //Clear entries
+	  bills.erase(end);
+	  bills.erase(start);
+	 }
+	 printf("%ld\n",cost);   
+	}//End of test case
+	return 0;
+}
