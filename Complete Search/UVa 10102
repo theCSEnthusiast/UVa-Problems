@@ -1,0 +1,38 @@
+/*
+UVa 10102: The Path in the Colored Field
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N,ans,dist;
+	string temp;
+	char c;
+	while(cin>>N){
+	    vector<pair<int,int>> one,three;
+	    
+	    //Input
+	    for(int row=0;row<N;row++){
+	        cin>>temp;
+	        for(int col=0;col<temp.size();col++){
+	            c=temp[col];
+	            if(c=='1') one.push_back(pair<int,int>(row,col));
+	            else if(c=='3') three.push_back(pair<int,int>(row,col));
+	        }
+	    }
+	    
+	    ans=-1;
+	    for(int i=0;i<one.size();i++){
+	        dist=10001;
+	        for(int j=0;j<three.size();j++){
+	            dist=min(dist,abs(one[i].first-three[j].first)+abs(one[i].second-three[j].second)); //Chooses the best distance
+	        }
+	        ans=max(ans,dist);      //Chooses the maximum to satisfy the condition ,'Independent of initial state'
+	    }
+	    
+	    printf("%d\n",ans);
+	} //End of test cases
+	return 0;
+}
