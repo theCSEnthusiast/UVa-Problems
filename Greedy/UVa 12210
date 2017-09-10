@@ -1,0 +1,27 @@
+/*
+UVa 12210: A Match Making Problem
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int B,S,cases=1;
+	int bachelor[100001],spinster[100001];
+	while(cin>>B>>S){
+	    if(B==0&&S==0) break;
+	    for(int i=0;i<B;i++) scanf("%d",&bachelor[i]);
+	    for(int i=0;i<S;i++) scanf("%d",&spinster[i]);
+	    
+	    if(B<=S){
+	        printf("Case %d: %d\n",cases++,0);
+	    }
+	    else{
+	        sort(bachelor,bachelor+B);
+	        printf("Case %d: %d %d\n",cases++,B-S,bachelor[0]);
+	    }
+	    
+	}
+	return 0;
+}
