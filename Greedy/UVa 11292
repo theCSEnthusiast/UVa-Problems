@@ -1,0 +1,51 @@
+/*
+UVa 11292:Dragon of Loowater
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int D,K,temp;
+	vector<int> heads;
+	vector<int> heights;
+    vector<int>::iterator it;
+	while(cin>>D>>K){
+	    if(D==0&&K==0) break;
+	    
+	    heads.clear();
+	    heights.clear();
+	    
+	    int safe=1;
+	    int gold=0;
+	    if(D>K) safe=0;
+	    
+	    for(int i=0;i<D;i++) {
+	        cin>>temp;  
+	        heads.push_back(temp);
+	    }
+	    
+	    for(int i=0;i<K;i++){
+	        cin>>temp; 
+	        heights.push_back(temp);  
+	    } 
+	    
+	    sort(heads.begin(),heads.end());
+	    sort(heights.begin(),heights.end());
+	    
+	    
+	    it=heights.begin();
+	    it--;
+	    for(int d=0;d<D&&safe;d++){
+	        it=lower_bound(++it,heights.end(),heads[d]);
+	        if(it!=heights.end()) gold+=*it;
+	        else safe=0; 
+	    }
+	    
+	   if(safe) printf("%d\n",gold);
+	   else printf("Loowater is doomed!\n");
+	    
+	}
+	return 0;
+}
