@@ -1,0 +1,45 @@
+/*
+UVa 10341: Solve it
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+#define EPS 1e-9
+/*
+	p ∗ e−x + q ∗ sin(x) + r ∗ cos(x) + s ∗ tan(x) + t ∗ x2 + u = 0
+*/
+double evaluate(double d,int p,int q,int r,int s,int t,int u){
+    return (p*exp(-d)+q*sin(d)+r*cos(d)+s*tan(d)+t*pow(d,2)+u);
+}
+int main() {
+    int p,q,r,s,t,u;
+    double ans,d,elow,emid,ehigh;
+    while(cin>>p>>q>>r>>s>>t>>u){
+       double low=0.0,high=1.0;
+       ans=1;
+        
+       if (evaluate(0,p,q,r,s,t,u)*evaluate(1,p,q,r,s,t,u)>0) ans=0;
+       
+        while(fabs(high-low)>EPS&&ans){
+            d=(low+high)/2;
+            ans=evaluate(d,p,q,r,s,t,u);
+            
+            if(ans==0.0) break;
+            else {
+                elow=evaluate(low,p,q,r,s,t,u);
+                emid=evaluate(d,p,q,r,s,t,u);
+                ehigh=evaluate(high,p,q,r,s,t,u);
+                if(elow*emid<=0) high=d;
+                else if(emid*ehigh<=0) low=d;
+                else if(elow*emid*ehigh>0){
+                    ans=0;
+                }   
+            }
+        }
+        if(ans )printf("%.4lf\n",d);
+        else printf("No solution\n");
+    }
+	
+	return 0;
+}
