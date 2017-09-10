@@ -1,0 +1,38 @@
+/*
+UVa 11057: Exact Sum
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int N,choices[2],money,temp;
+	vector<int> prices;
+	while(cin>>N){
+	    prices.clear();
+	    int i=0,j=N-1;
+
+	    for(int i=0;i<N;i++){
+	        cin>>temp;
+	        prices.push_back(temp);
+	    }
+	    sort(prices.begin(),prices.end()); 
+	    cin>>money;
+	   
+	   while(i<j){
+	       if(prices[i]+prices[j]<money) i++;
+	       else if(prices[i]+prices[j]>money) j--;
+	       else {
+	           choices[0]=prices[i];
+	           choices[1]=prices[j];
+	           i++,j--;
+	       }
+	       
+	   }
+	    
+	   
+	   printf("Peter should buy books whose prices are %d and %d.\n\n",choices[0],choices[1]);
+	}
+	return 0;
+}
