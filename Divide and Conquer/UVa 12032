@@ -1,0 +1,52 @@
+/*
+UVa 12032: The Monkey and the Oiled Bamboo
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+int arr[1000001];
+bool canWin(int length,int k){
+    
+    for(int next=0;next<length;next++){
+        if(k==0) return false;
+        if(next==0){
+            if(arr[next]==k) k--;
+        }
+        else{
+            if(arr[next]-arr[next-1]==k) k--;
+            else if(arr[next]-arr[next-1]>k) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+int main() {
+	int test,length,low,high,mid;
+	cin>>test;
+	
+	for(int cases=1;cases<=test;cases++){
+	cin>>length;
+	for(int i=0;i<length;i++) {
+	    scanf("%d",&arr[i]);
+	}
+	
+	//Processing
+	low=arr[0],high=arr[length-1];
+	while(low!=high){
+	    mid=(low+high)/2;
+	    
+	    if(canWin(length,mid)) {
+	        
+	        high=mid;
+	    }
+	    else if(low+1==high) low=high;
+	    else low=mid;
+	}    
+	    
+	printf("Case %d: %d\n",cases,low);    
+	}
+	return 0;
+}
