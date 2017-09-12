@@ -1,0 +1,48 @@
+/*
+UVa 10827: Maximum sum on a torus
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n,val,test;
+	cin>>test;
+	int arr[151][151];
+	while(test--){
+	cin>>n;
+	
+	
+	//Input
+	for(int i=0;i<2*n;i++){                                      //Runs for all elements in matrix of size 2*N to create cumulative array
+	    for(int j=0;j<2*n;j++){
+	        
+	        if(i<n&&j<n) {
+	            cin>>arr[i][j];
+	            arr[i+n][j]=arr[i+n][j+n]=arr[i][j+n]=arr[i][j];    //Create mirror images of array elements
+	        }
+	        if(i>0) arr[i][j]+=arr[i-1][j];
+	        if(j>0) arr[i][j]+=arr[i][j-1];
+	        if(i>0&&j>0)arr[i][j]-=arr[i-1][j-1];
+	    }
+	}
+	
+  int maximum=-99999;
+	for(int i=0;i<n;i++){
+	    for(int j=0;j<n;j++){
+	        for(int k=i;k<i+n;k++){
+	            for(int l=j;l<j+n;l++){
+	                int sub=arr[k][l];
+	                if(i>0) sub-=arr[i-1][l];
+	                if(j>0) sub-=arr[k][j-1];
+	                if(i>0&&j>0) sub+=arr[i-1][j-1];
+	                maximum=max(sub,maximum);
+	            }
+	        }
+	    }
+	}
+	printf("%d\n",maximum);
+	}
+	return 0;
+}
