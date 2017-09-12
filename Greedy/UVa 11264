@@ -1,0 +1,33 @@
+/*
+UVa 11264: Coin Collector
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int test,N,val;
+	vector<int> coins;
+	cin>>test;
+	while(test--){
+	    cin>>N;
+	    coins.clear();
+	    
+	    for(int i=0;i<N;i++){
+	        cin>>val;
+	        coins.push_back(val);
+	    }
+	    
+	    int count=0,sum=0;
+	    for(int i=0;i<N;i++){
+	        if(i==N-1||sum+coins.at(i)<coins.at(i+1)){
+	            count++;         
+	            sum+=coins.at(i);
+	        }
+	    }
+	    printf("%d\n",count);
+	    
+	}
+	return 0;
+}
