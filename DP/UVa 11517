@@ -1,0 +1,36 @@
+/*
+UVa 11517: Exact Change
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+#define limit 10000
+int main() {
+	int test,price,n,ans;
+	int coins[101];
+	int money[10001];
+	cin>>test;
+	while(test--){
+	    cin>>price;
+	    cin>>n;
+	    for(int i=0;i<n;i++) scanf("%d",&coins[i]);
+	    for(int i=1;i<=limit;i++) money[i]=limit;
+	    
+	    money[0]=0;
+	    
+	    //Code to find out minimum number of coins
+	    for(int i=0;i<n;i++){
+	        for(int j=10000;j>=0;j--){
+	            if(j-coins[i]>=0 && money[j-coins[i]]+1<money[j]){
+	                money[j]=money[j-coins[i]]+1;
+	            }
+	        }
+	    }
+	    
+	    for(ans=price;money[ans]==limit;ans++);
+	    
+	    printf("%d %d\n",ans,money[ans]);
+	}
+	return 0;
+}
