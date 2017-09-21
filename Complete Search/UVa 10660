@@ -1,0 +1,65 @@
+/*
+UVa 10660: Citizen Attention Offices
+Solution By: Abhijeet Bhattacharya
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int optimalMin;
+int offices[5];
+
+void findCombinations(int arr[], int data[], int start, int end,int index, int r,int population[]){
+   
+	if (index== r)
+	{
+	    int sum=0;
+	    for(int i=0;i<25;i++){
+	        if(population[i]>0){
+	        int min_dist=INT_MAX;
+	        for(int j=0;j<5;j++){
+	            min_dist=min(min_dist,population[i]*(abs(data[j]/5-i/5)+abs(data[j]%5-i%5)));
+
+	        }
+	        sum+=min_dist;
+	        }
+	    }
+	    if(sum<optimalMin){
+	        for(int i=0;i<5;i++) offices[i]=data[i];
+	        optimalMin=sum;
+	    }
+	    
+		return;
+	}
+	for (int i=start; i<=end; i++)
+	{
+		data[index] = arr[i];
+		findCombinations(arr, data, i+1, end, index+1, r,population);
+	}
+}
+
+int main() {
+	int test,N,x,y;
+	int arr[] = {0,1, 2, 3, 4, 5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24};
+	cin>>test;
+	while(test--){
+	    optimalMin=INT_MAX;
+	    cin>>N;
+	    int population[25];
+	    memset(population,0,sizeof(population));
+	    for(int i=0;i<N;i++){
+	        cin>>x>>y;
+	        scanf("%d",&population[5*x+y]);
+	    }
+	    
+	    //Processing
+	    int data[5];
+	    findCombinations(arr, data, 0, 24, 0, 5,population);
+	    
+	    //Output
+	    for(int i=0;i<4;i++) printf("%d ",offices[i]);
+	    printf("%d",offices[4]);
+	    printf("\n");
+	}
+	return 0;
+}
