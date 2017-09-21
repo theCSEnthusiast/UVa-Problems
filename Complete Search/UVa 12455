@@ -1,0 +1,35 @@
+/*
+UVa 12455: Bars
+Solution By: Abhijeet Bhattacharya
+Note: Recursive solution
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool solve(int arr[],int n,int sum){
+    if(sum==0) return true;
+    if(n==0 && sum!=0) return false;
+    
+    if(arr[n-1]>sum) return solve(arr,n-1,sum);
+    
+    return (solve(arr,n-1,sum)||solve(arr,n-1,sum-arr[n-1]));
+    
+}
+
+int main() {
+    int test,target,n,arr[1001];
+    cin>>test;
+    while(test--){
+        cin>>target;
+        cin>>n;
+        for(int i=0;i<n;i++){
+             scanf("%d",&arr[i]);
+            // cout<<arr[i]<<endl;
+        } 
+        //cout<<target<<endl;
+        if(solve(arr,n,target)==true) printf("YES\n");
+        else printf("NO\n");
+    }
+	return 0;
+}
